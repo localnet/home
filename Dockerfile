@@ -2,7 +2,7 @@
 FROM alpine:3.18 as workaround
 
 RUN apk add nodejs npm
-RUN npm install -g --verbose zwave-js-ui
+RUN npm install -g zwave-js-ui
 
 RUN apk add build-base jq linux-headers python3-dev
 RUN npm_config_build_from_source=true npm rebuild -g @serialport/bindings-cpp
@@ -11,8 +11,10 @@ RUN apk del build-base jq linux-headers python3-dev
 
 FROM alpine:latest
 
+RUN apk add nodejs npm
+
 COPY --from=workaround /usr/local/lib/node-modules /usr/local/lib/node-modules
-COPY --from=workaround /usr/local/bin/zwave-js-ui /usr/local/bin/zwave-js-bin
+COPY --from=workaround /usr/local/bin/zwave-js-ui /usr/local/bin/zwave-js-ui
 
 RUN mkdir -p /usr/local/var/zwave-js
 RUN mkdir -p /usr/local/share/zwave-js
