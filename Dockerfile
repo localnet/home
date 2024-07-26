@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add nodejs npm
+RUN apk add nodejs-current npm
 RUN npm install -g --verbose zwave-js-ui
 
 RUN apk add build-base jq linux-headers python3-dev
