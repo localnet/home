@@ -1,4 +1,4 @@
-name: ci
+name: zwave-js
 
 on:
   push:
@@ -6,6 +6,11 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
     steps:
       -
         name: Set up QEMU
