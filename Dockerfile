@@ -1,4 +1,4 @@
-FROM alpine:3.18⁠
+FROM alpine:3.18
 
 RUN apk add nodejs npm
 RUN npm install -g --verbose zwave-js-ui
