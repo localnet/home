@@ -15,6 +15,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          file: zwave-js
+          platforms: linux/arm/v7
           push: true
           tags: localnet/zwave-js:latest
