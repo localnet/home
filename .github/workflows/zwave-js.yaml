@@ -1,20 +1,28 @@
-name: zwave-js
+name: ci
 
 on:
   push:
-    branches: main
 
 jobs:
-  zwave-js:
+  docker:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: Build and push
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
         uses: docker/build-push-action@v6
         with:
-          platforms: linux/arm/v7
           push: true
-          tags: localnet/zwave-js:latest
+          tags: user/app:latest
