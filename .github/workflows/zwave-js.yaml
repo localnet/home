@@ -9,9 +9,10 @@ jobs:
     permissions:
       contents: read
       packages: write
-      attestations: write
-      id-token: write
     steps:
+      - 
+        name: Checkout repository
+        uses: actions/checkout@v4
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -30,5 +31,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           platforms: linux/arm/v7
+          context: .
           push: true
           tags: zwave-js:latest
