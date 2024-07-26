@@ -13,7 +13,7 @@ FROM alpine:latest
 
 RUN apk add nodejs npm
 
-COPY --from=workaround /usr/local/lib/node-modules /usr/local/lib/node-modules
+COPY --from=workaround /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=workaround /usr/local/bin/zwave-js-ui /usr/local/bin/zwave-js-ui
 
 RUN mkdir -p /usr/local/var/zwave-js
