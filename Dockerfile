@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add bluez ffmpeg gcc lapack libffi libjpeg-turbo tiff openjpeg openssl python3 py3-pip py3- zlib
+RUN apk add bluez ffmpeg gcc lapack libffi libjpeg-turbo tiff openjpeg openssl python3 py3-pip zlib
 
 RUN mkdir -p /usr/local/var/home-assistant
 
