@@ -3,15 +3,12 @@ FROM alpine:latest
 RUN apk add python3
 
 RUN mkdir -p /usr/local/lib/python
-
-RUN apk add gcc libffi-dev linux-headers musl-dev python3-dev
-RUN python -m venv /usr/local/lib/python/.venv
-RUN /usr/local/lib/python/.venv/bin/python -m pip install wheel
-RUN /usr/local/lib/python/.venv/bin/python -m pip install homeassistant
-RUN apk del gcc libffi-dev linux-headers musl-dev python3-dev
-
 RUN mkdir -p /var/local/home-assistant
 
-RUN apk add g++ python3-dev
+RUN apk add g++ libffi-dev linux-headers python3-dev
+
+RUN python -m venv /usr/local/lib/python/.venv
+RUN /usr/local/lib/python/.venv/bin/python -m pip install wheel homeassistant
 RUN /usr/local/lib/python/.venv/bin/hass --config /var/local/home-assistant
-RUN apk del g++ python3-dev
+
+RUN apk del g++ libffi-dev linux-headers python3-dev
