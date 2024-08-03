@@ -12,4 +12,6 @@ RUN apk del gcc libffi-dev linux-headers musl-dev python3-dev
 
 RUN mkdir -p /var/local/home-assistant
 
+RUN apk add g++
 RUN /usr/local/lib/python/.venv/bin/hass --config /var/local/home-assistant
+RUN apk del g++
