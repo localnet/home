@@ -1,15 +1,12 @@
 FROM alpine:latest
 
-RUN apk add bluez ffmpeg gcc lapack libffi libjpeg-turbo tiff openjpeg openssl python3 py3-pip zlib
+RUN apk add python3
 
-RUN mkdir -p /usr/local/var/home-assistant
+RUN mkdir -p /usr/local/lib/python
 
-RUN apk add lapack-dev libffi-dev libjpeg-turbo-dev tiff-dev openjpeg-dev openssl-dev python3-dev zlib-dev
-RUN apk add py3-build py3-setuptools py3-wheel
-RUN python3 -m venv /usr/local/var/home-assistant
-RUN source /usr/local/var/home-assistant/bin/activate
-RUN pip3 install homeassistant==2024.7.3
-RUN apk del py3-build py3-setuptools py3-wheel
-RUN apk del lapack-dev libffi-dev libjpeg-turbo-dev tiff-dev openjpeg-dev openssl-dev python3-dev zlib-dev
+RUN apk add gcc linux-headers musl-dev python3-dev
+RUN python -m venv /usr/local/lib/python/.venv
+RUN /usr/local/lib/python/.venv/bin/python -m pip install wheel
+RUN /usr/local/lib/python/.venv/bin/python -m pip install homeassistant
 
-CMD hass
+CMD hass --config /var/local/home-assistant
