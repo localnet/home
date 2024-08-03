@@ -10,4 +10,4 @@ RUN /usr/local/lib/python/.venv/bin/python -m pip install wheel
 RUN /usr/local/lib/python/.venv/bin/python -m pip install homeassistant
 RUN apk del gcc libffi-dev linux-headers musl-dev python3-dev
 
-CMD hass --config /var/local/home-assistant
+RUN hass --config /var/local/home-assistant
