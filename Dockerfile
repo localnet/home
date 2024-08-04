@@ -1,14 +1,13 @@
-FROM alpine:latest
+FROM debian:latest
 
-RUN apk add python3
+RUN apt install python3 python3-venv python3-pip bluez libopenjp2-7 libtiff6 libturbojpeg0-dev tzdata ffmpeg liblapack3
 
-RUN mkdir -p /usr/local/lib/python
-RUN mkdir -p /var/local/home-assistant
+RUN apt install python3-dev libffi-dev libssl-dev libjpeg-dev zlib1g-dev autoconf build-essential liblapack-dev libatlas-base-dev
 
-RUN apk add g++ libffi-dev linux-headers python3-dev
+WORKDIR /usr/local/lib/python_packages
 
-RUN python -m venv /usr/local/lib/python/.venv
-RUN /usr/local/lib/python/.venv/bin/python -m pip install --prefer-binary wheel homeassistant
-RUN /usr/local/lib/python/.venv/bin/hass --config /var/local/home-assistant
+RUN mkdir -p /usr/local/lib/home-assistant
+RUN pip install wheel homeassistant 
+RUN python -m compileall homeassistant
 
-RUN apk del g++ libffi-dev linux-headers python3-dev
+CMD hass
