@@ -8,8 +8,7 @@ RUN apt install -y python3 python3-venv python3-pip bluez libopenjp2-7 libtiff6 
 RUN apt install -y python3-dev libffi-dev libssl-dev libjpeg-dev zlib1g-dev autoconf build-essential liblapack-dev libatlas-base-dev
 
 RUN mkdir -p /usr/local/lib/home-assistant
-RUN python -m venv --upgrade /usr/local/lib/home-assistant/.venv
-RUN /usr/local/lib/home-assistant/.venv/bin/python -m pip install wheel homeassistant
-RUN /usr/local/lib/home-assistant/.venv/bin/python -m compileall
+RUN python3 -m venv --upgrade /usr/local/lib/home-assistant/.venv
+RUN /usr/local/lib/home-assistant/.venv/bin/python -m pip --prefer-binary install wheel homeassistant
 
-CMD hass
+RUN hass
