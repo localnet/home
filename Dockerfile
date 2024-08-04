@@ -1,6 +1,7 @@
 FROM debian:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV apt update
 
 RUN apt install -y python3 python3-venv python3-pip bluez libopenjp2-7 libtiff6 libturbojpeg0-dev tzdata ffmpeg liblapack3
 
