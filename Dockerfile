@@ -11,6 +11,7 @@ RUN mkdir -p /usr/local/lib/home-assistant
 RUN python3 -m venv --upgrade /usr/local/lib/home-assistant/.venv
 RUN /usr/local/lib/home-assistant/.venv/bin/python3 -m pip install wheel
 RUN /usr/local/lib/home-assistant/.venv/bin/python3 -m pip install homeassistant
-RUN python3 -m compileall /usr/local/lib/home-assistant
+#RUN python3 -m compileall /usr/local/lib/home-assistant
+RUN /usr/local/lib/home-assistant/.venv/bin/python3 -m compileall
 
-RUN hass
+RUN /usr/local/lib/home-assistant/.venv/bin/hass
