@@ -3,7 +3,7 @@ FROM debian:latest
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update
-RUN apt install -y bluez ffmpeg liblapack3 libopenjp2-7 libtiff6 python3
+RUN apt install -y bluez ffmpeg liblapack3 libopenjp2-7 libtiff6 python3 python3-venv
 
 RUN apt install -y autoconf build-essential python3-dev
 RUN apt install -y libatlas-base-dev libffi-dev libjpeg-dev liblapack-dev libssl-dev zlib1g-dev libturbojpeg0-dev
