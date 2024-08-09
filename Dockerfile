@@ -1,14 +1,16 @@
 FROM debian:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt update
+RUN apt install -y bluez ffmpeg liblapack3 libopenjp2-7 libtiff6 python3
 
-RUN apt install -y python3 python3-venv python3-pip bluez libopenjp2-7 libtiff6 libturbojpeg0-dev tzdata ffmpeg liblapack3
-
-RUN apt install -y python3-dev libffi-dev libssl-dev libjpeg-dev zlib1g-dev autoconf build-essential liblapack-dev libatlas-base-dev
-
+RUN apt install -y autoconf build-essential python3-dev
+RUN apt install -y libatlas-base-dev libffi-dev libjpeg-dev liblapack-dev libssl-dev zlib1g-dev libturbojpeg0-dev
 RUN mkdir -p /usr/local/lib/home-assistant
-RUN python3 -m venv --upgrade /usr/local/lib/home-assistant/.venv
-RUN /usr/local/lib/home-assistant/.venv/bin/python -m pip --prefer-binary install wheel homeassistant
+RUN python -m venv --upgrade /usr/local/lib/home-assistant/.venv
+RUN /usr/local/lib/home-assistant/.env/bin/python -m pip install wheel
+RUN /usr/local/lib/home-assistant/.env/bin/python -m pip install homeassistant
+RUN python -m compileall /usr/local/lib/home-assistant
 
 RUN hass
